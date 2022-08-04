@@ -1,0 +1,38 @@
+###### Spring Boot (backend) ######
+
+spring-boot-ecommerce/HELP.md
+spring-boot-ecommerce/target/
+spring-boot-ecommerce/!.mvn/wrapper/maven-wrapper.jar
+spring-boot-ecommerce/!**/src/main/**/target/
+spring-boot-ecommerce/!**/src/test/**/target/
+
+### STS ###
+spring-boot-ecommerce/.apt_generated
+spring-boot-ecommerce/.classpath
+spring-boot-ecommerce/spring-boot-ecommerce/.factorypath
+spring-boot-ecommerce/.project
+spring-boot-ecommerce/.settings
+spring-boot-ecommerce/.springBeans
+spring-boot-ecommerce/.sts4-cache
+
+### IntelliJ IDEA ###
+spring-boot-ecommerce/.idea
+spring-boot-ecommerce/*.iws
+spring-boot-ecommerce/*.iml
+spring-boot-ecommerce/*.ipr
+
+### NetBeans ###
+spring-boot-ecommerce/nbproject/private/
+spring-boot-ecommerce/nbbuild/
+spring-boot-ecommerce/dist/
+spring-boot-ecommerce/nbdist/
+spring-boot-ecommerce/.nb-gradle/
+spring-boot-ecommerce/build/
+spring-boot-ecommerce/!**/src/main/**/build/
+spring-boot-ecommerce/!**/src/test/**/build/
+
+### VS Code ###
+spring-boot-ecommerce/.vscode/
+
+### MacOS ###
+.DS_Store
