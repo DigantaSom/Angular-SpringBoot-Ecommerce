@@ -32,7 +32,7 @@ spring-boot-ecommerce/!**/src/main/**/build/
 spring-boot-ecommerce/!**/src/test/**/build/
 
 ### VS Code ###
-spring-boot-ecommerce/.vscode/
+.vscode/
 
 ### MacOS ###
 .DS_Store
