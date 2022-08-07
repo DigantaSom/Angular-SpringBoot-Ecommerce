@@ -94,6 +94,7 @@ h6 {
 
 a {
   display: inline-block;
+  text-decoration: none !important;
 }
 
 a:active,
@@ -742,6 +743,10 @@ table.table.table-bordered th {
 .detail-section {
   margin-top: 60px;
 }
+.detail-img {
+  width: 30%;
+}
+
 /**/
 
 /* 

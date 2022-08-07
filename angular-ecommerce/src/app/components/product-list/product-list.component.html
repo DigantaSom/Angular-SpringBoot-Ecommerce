@@ -10,17 +10,16 @@
         <!-- loop over the collection of products -->
         <div *ngFor="let product of products" class="col-md-3">
           <div class="product-box">
-            <a href="/product-detail">
+            <a routerLink="/products/{{ product.id }}">
               <img
                 [src]="product.imageUrl"
                 [alt]="product.name"
                 class="img-responsive"
               />
             </a>
-            <a href="/product-detail">
+            <a routerLink="/products/{{ product.id }}">
               <h1>{{ product.name }}</h1>
             </a>
-            <h2>{{ product.description }}</h2>
             <div class="price">{{ product.unitPrice | currency: "USD" }}</div>
             <a href="#" class="primary-btn">Add to cart</a>
           </div>
