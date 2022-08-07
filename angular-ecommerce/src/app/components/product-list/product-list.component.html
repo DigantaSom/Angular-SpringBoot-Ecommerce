@@ -1,7 +1,9 @@
 <div class="main-content">
   <div class="section content section content-p30">
-    <h4>Category: {{ currentCategoryName }}</h4>
-    <hr />
+    <div *ngIf="!searchMode">
+      <h4>Category: {{ currentCategoryName }}</h4>
+      <hr />
+    </div>
 
     <div class="container-fluid">
       <div class="row">
@@ -22,6 +24,14 @@
             <div class="price">{{ product.unitPrice | currency: "USD" }}</div>
             <a href="#" class="primary-btn">Add to cart</a>
           </div>
+        </div>
+        <!-- if products are empty then display a message -->
+        <div
+          *ngIf="products?.length === 0"
+          class="alert alert-warning col-md-12"
+          role="alert"
+        >
+          No products found.
         </div>
       </div>
     </div>
