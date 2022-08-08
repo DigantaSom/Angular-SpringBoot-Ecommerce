@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -27,7 +28,12 @@ const routes: Routes = [
     SearchComponent,
     ProductDetailsComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    NgbModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
