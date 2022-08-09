@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   searchMode: boolean = false;
   // new properties for pagination
   pageNumber: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 5;
   totalElements: number = 0;
 
   constructor(
@@ -101,5 +101,13 @@ export class ProductListComponent implements OnInit {
     this.productService.searchProducts(theKeyword).subscribe((data) => {
       this.products = data;
     });
+  }
+
+  updatePageSize(event: Event): void {
+    const pageSize: number = +(event.target as HTMLSelectElement).value;
+
+    this.pageSize = pageSize;
+    this.pageNumber = 1;
+    this.listProducts();
   }
 }
