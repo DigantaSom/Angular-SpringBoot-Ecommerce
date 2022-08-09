@@ -35,6 +35,16 @@ export class ProductService {
     return this.getProducts(searchUrl);
   }
 
+  searchProductsPaginate(
+    theKeyword: string,
+    thePage: number,
+    thePageSize: number
+  ): Observable<GetResponseProducts> {
+    const searchUrl: string = `${this.productsUrl}/search/findByNameContainingIgnoreCase?name=${theKeyword}&page=${thePage}&size=${thePageSize}`;
+
+    return this.http.get<GetResponseProducts>(searchUrl);
+  }
+
   getProduct(productId: number): Observable<Product> {
     const productUrl: string = `${this.productsUrl}/${productId}`;
     return this.http.get<Product>(productUrl);

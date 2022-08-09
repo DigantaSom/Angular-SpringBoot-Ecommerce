@@ -22,6 +22,7 @@ export class ProductListComponent implements OnInit {
   pageNumber: number = 1;
   pageSize: number = 5;
   totalElements: number = 0;
+  previousKeyword: string | null = null;
 
   constructor(
     private productService: ProductService,
@@ -69,19 +70,28 @@ export class ProductListComponent implements OnInit {
       `currentCategoryId = ${this.currentCategoryId}, pageNumber = ${this.pageNumber}`
     );
 
-    // now get the products for the given category id
-    // this.productService
-    //   .getProductList(this.currentCategoryId)
-    //   .subscribe((data) => {
-    //     this.products = data;
-    //   });
-
     this.productService
       .getProductListPaginate(
         this.pageNumber - 1,
         this.pageSize,
         this.currentCategoryId
       )
+      .subscribe(this.processResult());
+  }
+
+  private handleSearchProducts(): void {
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
+
+    // if we have a different keyword than previous, then set pageNumber to 1
+    if (this.previousKeyword !== theKeyword) {
+      this.pageNumber = 1;
+    }
+    this.previousKeyword = theKeyword;
+    console.log(`keyword = ${theKeyword}, pageNumber = ${this.pageNumber}`);
+
+    // now search for products using this keyword
+    this.productService
+      .searchProductsPaginate(theKeyword, this.pageNumber - 1, this.pageSize)
       .subscribe(this.processResult());
   }
 
@@ -92,15 +102,6 @@ export class ProductListComponent implements OnInit {
       this.pageSize = data.page.size;
       this.totalElements = data.page.totalElements;
     };
-  }
-
-  private handleSearchProducts(): void {
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
-
-    // now search for products using this keyword
-    this.productService.searchProducts(theKeyword).subscribe((data) => {
-      this.products = data;
-    });
   }
 
   updatePageSize(event: Event): void {
