@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Product } from 'src/app/common/product';
 import {
   GetResponseProducts,
   ProductService,
 } from 'src/app/services/product.service';
+import { CartService } from 'src/app/services/cart.service';
+
+import { Product } from 'src/app/common/product';
+import { CartItem } from 'src/app/common/cart-item';
 
 @Component({
   selector: 'app-product-list',
@@ -25,8 +28,9 @@ export class ProductListComponent implements OnInit {
   previousKeyword: string | null = null;
 
   constructor(
+    private route: ActivatedRoute,
     private productService: ProductService,
-    private route: ActivatedRoute
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -110,5 +114,10 @@ export class ProductListComponent implements OnInit {
     this.pageSize = pageSize;
     this.pageNumber = 1;
     this.listProducts();
+  }
+
+  addToCart(productToAdd: Product): void {
+    const cartItem = new CartItem(productToAdd);
+    this.cartService.addToCart(cartItem);
   }
 }
