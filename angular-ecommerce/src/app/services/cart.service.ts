@@ -39,7 +39,30 @@ export class CartService {
     this.computeCartTotals();
   }
 
-  private computeCartTotals(): void {
+  decrementQuantity(item: CartItem): void {
+    if (item.quantity === 0) {
+      return;
+    }
+    item.quantity--;
+
+    if (item.quantity === 0) {
+      this.removeItem(item);
+    } else {
+      this.computeCartTotals();
+    }
+  }
+
+  removeItem(itemToRemove: CartItem): void {
+    const itemIndex: number = this.cartItems.findIndex(
+      (cartItem) => cartItem.id === itemToRemove.id
+    );
+    if (itemIndex > -1) {
+      this.cartItems.splice(itemIndex, 1);
+      this.computeCartTotals();
+    }
+  }
+
+  computeCartTotals(): void {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
 
