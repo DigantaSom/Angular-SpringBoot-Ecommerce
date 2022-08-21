@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { Country } from 'src/app/common/country';
+import { State } from 'src/app/common/state';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 
 @Component({
@@ -16,6 +18,10 @@ export class CheckoutComponent implements OnInit {
 
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
+
+  countries: Country[] = [];
+  shippingAddressStates: State[] = [];
+  billingAddressStates: State[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,6 +71,11 @@ export class CheckoutComponent implements OnInit {
     this.luv2ShopFormService.getCreditCardYears().subscribe((data) => {
       this.creditCardYears = data;
     });
+
+    // populate countries
+    this.luv2ShopFormService.getCountries().subscribe((data) => {
+      this.countries = data;
+    });
   }
 
   onSubmit(): void {
@@ -78,8 +89,10 @@ export class CheckoutComponent implements OnInit {
       this.checkoutFormGroup.controls['billingAddress'].setValue(
         this.checkoutFormGroup.controls['shippingAddress'].value
       );
+      this.billingAddressStates = this.shippingAddressStates;
     } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
+      this.billingAddressStates = [];
     }
   }
 
@@ -106,5 +119,19 @@ export class CheckoutComponent implements OnInit {
       .subscribe((data) => {
         this.creditCardMonths = data;
       });
+  }
+
+  // populating states based on country for shipping-address and billing-address, individually
+  getStates(formGroupName: 'shippingAddress' | 'billingAddress'): void {
+    const formGroup = this.checkoutFormGroup.get(formGroupName);
+    const countryCode: string = formGroup!.value.country.code;
+
+    this.luv2ShopFormService.getStates(countryCode).subscribe((data) => {
+      if (formGroupName === 'shippingAddress') {
+        this.shippingAddressStates = data;
+      } else {
+        this.billingAddressStates = data;
+      }
+    });
   }
 }
