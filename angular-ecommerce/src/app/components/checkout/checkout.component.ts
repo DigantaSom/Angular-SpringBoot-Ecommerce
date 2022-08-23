@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
 
@@ -37,11 +39,13 @@ interface CreditCardForm {
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutFormGroup: FormGroup;
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
+  totalPriceSub: Subscription;
+  totalQuantitySub: Subscription;
 
   creditCardMonths: number[] = [];
   creditCardYears: number[] = [];
@@ -52,10 +56,13 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private luv2ShopFormService: Luv2ShopFormService
+    private luv2ShopFormService: Luv2ShopFormService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.reviewCartDetails();
+
     // initialize form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group<CustomerForm>({
@@ -149,6 +156,11 @@ export class CheckoutComponent implements OnInit {
     this.luv2ShopFormService.getCountries().subscribe((data) => {
       this.countries = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.totalPriceSub.unsubscribe();
+    this.totalQuantitySub.unsubscribe();
   }
 
   // getter methods for customer form controls
@@ -265,6 +277,15 @@ export class CheckoutComponent implements OnInit {
       } else {
         this.billingAddressStates = data;
       }
+    });
+  }
+
+  private reviewCartDetails(): void {
+    this.totalPriceSub = this.cartService.totalPrice.subscribe((data) => {
+      this.totalPrice = data;
+    });
+    this.totalQuantitySub = this.cartService.totalQuantity.subscribe((data) => {
+      this.totalQuantity = data;
     });
   }
 }
