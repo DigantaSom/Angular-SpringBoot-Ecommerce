@@ -31,8 +31,47 @@ spring-boot-ecommerce/build/
 spring-boot-ecommerce/!**/src/main/**/build/
 spring-boot-ecommerce/!**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+###### Angular (frontend) ######
 
-### MacOS ###
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+angular-ecommerce/dist
+angular-ecommerce/tmp
+angular-ecommerce/out-tsc
+angular-ecommerce/bazel-out
+
+# Node
+angular-ecommerce/node_modules
+angular-ecommerce/npm-debug.log
+angular-ecommerce/yarn-error.log
+
+# IDEs and editors
+angular-ecommerce/.idea/
+angular-ecommerce/.project
+angular-ecommerce/.classpath
+angular-ecommerce/.c9/
+angular-ecommerce/*.launch
+angular-ecommerce/.settings/
+angular-ecommerce/*.sublime-workspace
+
+# Visual Studio Code
+angular-ecommerce/.vscode/*
+angular-ecommerce/!.vscode/settings.json
+angular-ecommerce/!.vscode/tasks.json
+angular-ecommerce/!.vscode/launch.json
+angular-ecommerce/!.vscode/extensions.json
+angular-ecommerce/.history/*
+
+# Miscellaneous
+angular-ecommerce/.angular/cache
+angular-ecommerce/.sass-cache/
+angular-ecommerce/connect.lock
+angular-ecommerce/coverage
+angular-ecommerce/libpeerconnection.log
+angular-ecommerce/testem.log
+angular-ecommerce/typings
+
+# System files
 .DS_Store
+Thumbs.db
