@@ -71,6 +71,7 @@ angular-ecommerce/coverage
 angular-ecommerce/libpeerconnection.log
 angular-ecommerce/testem.log
 angular-ecommerce/typings
+angular-ecommerce/src/environments/
 
 # System files
 .DS_Store
