@@ -6,6 +6,7 @@ spring:
   data:
     rest:
       base-path: /api
+      detection-strategy: ANNOTATED # only repos annotated with @RepositoryRestResource will be visible
 
 allowed:
   origins: http://localhost:4200
