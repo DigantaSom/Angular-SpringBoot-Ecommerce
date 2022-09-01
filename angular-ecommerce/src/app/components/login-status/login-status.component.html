@@ -10,9 +10,17 @@
     *ngIf="isAuthenticated"
     routerLink="/members"
     class="security-btn"
-    style="margin-right: 8px"
+    style="margin-right: 4px"
   >
     Member
+  </button>
+  <button
+    *ngIf="isAuthenticated"
+    routerLink="/order-history"
+    class="security-btn"
+    style="margin-right: 4px"
+  >
+    Orders
   </button>
   <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn">
     Logout

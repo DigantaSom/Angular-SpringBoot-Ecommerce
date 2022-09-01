@@ -11,6 +11,8 @@ export class LoginStatusComponent implements OnInit {
   isAuthenticated: boolean | undefined = false;
   userFullName: string | undefined;
 
+  storage: Storage = sessionStorage;
+
   constructor(
     private oktaAuthService: OktaAuthStateService,
     @Inject(OKTA_AUTH) private oktaAuth: OktaAuth
@@ -27,6 +29,7 @@ export class LoginStatusComponent implements OnInit {
   logout(): void {
     // Terminates the session with Okta and removes current tokens
     this.oktaAuth.signOut();
+    this.storage.clear();
   }
 
   private getUserDetails(): void {
@@ -34,6 +37,11 @@ export class LoginStatusComponent implements OnInit {
       // Fetch the logged in user's details (user's claims)
       this.oktaAuth.getUser().then((res) => {
         this.userFullName = res.name;
+
+        const email = res.email;
+        if (email) {
+          this.storage.setItem('userEmail', JSON.stringify(email));
+        }
       });
     }
   }

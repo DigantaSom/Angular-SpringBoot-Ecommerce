@@ -13,6 +13,7 @@ public class MyAppConfig implements WebMvcConfigurer {
   @Value("${spring.data.rest.base-path}")
   private String basePath;
 
+  // this method adds CORS mapping only for RestControllers of this app
   @Override
   public void addCorsMappings(CorsRegistry cors) {
     // WebMvcConfigurer.super.addCorsMappings(cors);

@@ -48,6 +48,7 @@ interface CreditCardForm {
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutFormGroup: FormGroup;
+  storage: Storage = localStorage;
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
@@ -365,6 +366,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartService.totalQuantity.next(0);
 
     this.checkoutFormGroup.reset();
+    this.storage.removeItem('cartItems');
 
     this.router.navigateByUrl('/products');
   }

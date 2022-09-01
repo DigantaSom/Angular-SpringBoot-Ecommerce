@@ -1,9 +1,6 @@
 package com.digantasom.ecommerce.config;
 
-import com.digantasom.ecommerce.entity.Country;
-import com.digantasom.ecommerce.entity.Product;
-import com.digantasom.ecommerce.entity.ProductCategory;
-import com.digantasom.ecommerce.entity.State;
+import com.digantasom.ecommerce.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +42,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     disableHttpMethods(ProductCategory.class, config, theUnsupportedActions);
     disableHttpMethods(Country.class, config, theUnsupportedActions);
     disableHttpMethods(State.class, config, theUnsupportedActions);
+    disableHttpMethods(Order.class, config, theUnsupportedActions);
 
     // call an internal helper method
     exposeIds(config);
