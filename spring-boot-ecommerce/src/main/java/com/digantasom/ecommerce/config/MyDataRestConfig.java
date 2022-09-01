@@ -5,6 +5,7 @@ import com.digantasom.ecommerce.entity.Product;
 import com.digantasom.ecommerce.entity.ProductCategory;
 import com.digantasom.ecommerce.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -19,6 +20,12 @@ import java.util.Set;
 
 @Configuration
 public class MyDataRestConfig implements RepositoryRestConfigurer {
+  @Value("${allowed.origins}") // from application.yml
+  String[] theAllowedOrigins;
+
+  @Value("${spring.data.rest.base-path}")
+  private String basePath;
+
   @Autowired
   private EntityManager entityManager;
 
@@ -36,6 +43,9 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
     // call an internal helper method
     exposeIds(config);
+
+    // configure CORS mapping (with this, we can remove @CrossOrigin from JPA repositories)
+    cors.addMapping(basePath + "/**").allowedOrigins(theAllowedOrigins);
   }
 
   private void disableHttpMethods(

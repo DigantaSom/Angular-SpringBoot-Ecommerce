@@ -6,3 +6,6 @@ spring:
   data:
     rest:
       base-path: /api
+
+allowed:
+  origins: http://localhost:4200
