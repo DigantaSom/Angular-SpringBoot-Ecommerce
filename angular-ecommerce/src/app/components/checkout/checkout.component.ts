@@ -48,7 +48,6 @@ interface CreditCardForm {
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   checkoutFormGroup: FormGroup;
-  storage: Storage = localStorage;
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
@@ -73,6 +72,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.reviewCartDetails();
 
+    const userEmail = sessionStorage.getItem('userEmail')!;
+
     // initialize form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group<CustomerForm>({
@@ -86,7 +87,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           Validators.minLength(2),
           Luv2ShopValidators.notOnlyWhitespace,
         ]),
-        email: new FormControl('', [
+        email: new FormControl(JSON.parse(userEmail), [
           Validators.required,
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ]),
@@ -366,7 +367,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.cartService.totalQuantity.next(0);
 
     this.checkoutFormGroup.reset();
-    this.storage.removeItem('cartItems');
+    localStorage.removeItem('cartItems');
 
     this.router.navigateByUrl('/products');
   }

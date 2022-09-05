@@ -47,7 +47,11 @@ const routes: Routes = [
   { path: 'category/:id/:name', component: ProductListComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'cart-details', component: CartDetailsComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [OktaAuthGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'login/callback', component: OktaCallbackComponent },
   {
