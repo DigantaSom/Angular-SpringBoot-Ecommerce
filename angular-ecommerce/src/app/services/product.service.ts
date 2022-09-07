@@ -5,11 +5,13 @@ import { Observable, map } from 'rxjs';
 import { Product } from '../common/product';
 import { ProductCategory } from '../common/product-category';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl: string = 'http://localhost:8080/api';
+  private baseUrl: string = `${environment.backendBaseUrl}/api`;
   private productsUrl: string = `${this.baseUrl}/products`;
   private categoryUrl: string = `${this.baseUrl}/product-category`;
 

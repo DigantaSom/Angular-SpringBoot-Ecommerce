@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  backendBaseUrl: 'https://localhost:8443',
   clientId: '0oa6ao12n16xRpWz15d7',
   oktaDomain: 'dev-61774659.okta.com',
 };

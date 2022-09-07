@@ -5,11 +5,13 @@ import { Observable, map, of } from 'rxjs';
 import { Country } from '../common/country';
 import { State } from '../common/state';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class Luv2ShopFormService {
-  private baseUrl: string = 'http://localhost:8080/api';
+  private baseUrl: string = `${environment.backendBaseUrl}/api`;
   private countriesUrl: string = `${this.baseUrl}/countries`;
   private statesUrl: string = `${this.baseUrl}/states`;
 

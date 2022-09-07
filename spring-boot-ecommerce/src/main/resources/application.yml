@@ -9,10 +9,25 @@ spring:
       detection-strategy: ANNOTATED # only repos annotated with @RepositoryRestResource will be visible
 
 allowed:
-  origins: http://localhost:4200
+  origins: https://localhost:4200
 
 okta:
   oauth2:
     client-id: { yourClientId }
     client-secret: { yourClientSecret }
     issuer: https://{ yourOktaDomain }/oauth2/default
+
+#####
+#
+# HTTPS configuration (based on the keytool command that we did just before this)
+#
+#####
+
+server:
+  port: 8443 # Server web port
+  ssl:
+    enabled: true # Enable HTTPS support (only accept HTTPS requests)
+    key-alias: luv2code # Alias that identifies the key in the key store
+    key-store: classpath:luv2code-keystore.p12 # Keystore location
+    key-store-password: secret # Keystore password
+    key-store-type: PKCS12 # Keystore format
