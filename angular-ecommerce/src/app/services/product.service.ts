@@ -11,9 +11,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl: string = `${environment.backendBaseUrl}/api`;
-  private productsUrl: string = `${this.baseUrl}/products`;
-  private categoryUrl: string = `${this.baseUrl}/product-category`;
+  private productsUrl: string = `${environment.luv2shopApiUrl}/products`;
+  private categoryUrl: string = `${environment.luv2shopApiUrl}/product-category`;
 
   constructor(private http: HttpClient) {}
 

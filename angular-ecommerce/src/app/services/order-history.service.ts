@@ -4,11 +4,13 @@ import { map, Observable } from 'rxjs';
 
 import { OrderHistory } from '../common/order-history';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class OrderHistoryService {
-  private orderUrl: string = 'http://localhost:8080/api/orders';
+  private orderUrl: string = `${environment.luv2shopApiUrl}/orders`;
 
   constructor(private http: HttpClient) {}
 

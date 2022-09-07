@@ -25,6 +25,7 @@ okta:
 
 server:
   port: 8443 # Server web port
+#  port: 9898 # QA port demo
   ssl:
     enabled: true # Enable HTTPS support (only accept HTTPS requests)
     key-alias: luv2code # Alias that identifies the key in the key store

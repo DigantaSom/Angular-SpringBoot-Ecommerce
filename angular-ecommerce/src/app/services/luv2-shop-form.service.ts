@@ -11,9 +11,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class Luv2ShopFormService {
-  private baseUrl: string = `${environment.backendBaseUrl}/api`;
-  private countriesUrl: string = `${this.baseUrl}/countries`;
-  private statesUrl: string = `${this.baseUrl}/states`;
+  private countriesUrl: string = `${environment.luv2shopApiUrl}/countries`;
+  private statesUrl: string = `${environment.luv2shopApiUrl}/states`;
 
   constructor(private http: HttpClient) {}
 

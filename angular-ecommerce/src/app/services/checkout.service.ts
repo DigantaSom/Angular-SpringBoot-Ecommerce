@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CheckoutService {
-  private purchaseUrl: string = `${environment.backendBaseUrl}/api/checkout/purchase`;
+  private purchaseUrl: string = `${environment.luv2shopApiUrl}/checkout/purchase`;
 
   constructor(private http: HttpClient) {}
 
