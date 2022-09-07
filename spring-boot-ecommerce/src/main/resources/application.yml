@@ -10,3 +10,9 @@ spring:
 
 allowed:
   origins: http://localhost:4200
+
+okta:
+  oauth2:
+    client-id: { yourClientId }
+    client-secret: { yourClientSecret }
+    issuer: https://{ yourOktaDomain }/oauth2/default
