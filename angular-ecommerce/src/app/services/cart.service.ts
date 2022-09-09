@@ -94,7 +94,7 @@ export class CartService {
     this.persistCartItems();
   }
 
-  private persistCartItems(): void {
+  persistCartItems(): void {
     this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
