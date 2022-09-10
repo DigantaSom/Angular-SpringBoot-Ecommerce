@@ -13,9 +13,9 @@ allowed:
 
 okta:
   oauth2:
-    client-id: 0oa6ehzr5hmJqbIV95d7
-    client-secret: mAVlRpW6McJOCOgSv6NdXWgnIxp0tQq-UQ8P0B_R
-    issuer: https://dev-61774659.okta.com/oauth2/default
+    client-id: { yourClientId }
+    client-secret: { yourClientSecret }
+    issuer: https://{ yourOktaDomain }/oauth2/default
 
 #####
 #
@@ -41,4 +41,4 @@ server:
 
 stripe:
   key:
-    secret: sk_test_51Ib1gKSFU2UeFkhAsVeatYhqXikj0ufX5qqptrFumS9OYFg0o4KjczOmR80XAe9pJPBnJ8a1KZDT3KfZ5NJn4rgu00YdAbytUB
+    secret: { yourStripeSecret }

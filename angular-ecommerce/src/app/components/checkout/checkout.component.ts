@@ -307,7 +307,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     // Compute payment info
     // Making dollars to cents for Stripe. Also, Math.round() is used for JS float number to Java int conversion
     this.paymentInfo.amount = Math.round(this.totalPrice * 100);
-    this.paymentInfo.currency = 'INR'; // changing to INR here, to avoid Stripe purchase failure
+    this.paymentInfo.currency = 'USD';
+    this.paymentInfo.description = 'Luv2Code Shopping App purchase';
 
     console.log(`this.paymentInfo.amount: ${this.paymentInfo.amount}`);
 
@@ -331,6 +332,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               {
                 payment_method: {
                   card: this.cardElement,
+                  billing_details: {
+                    email: purchase.customer.email,
+                    name: `${purchase.customer.firstName} ${purchase.customer.lastName}`,
+                    address: {
+                      line1: purchase.billingAddress.street,
+                      city: purchase.billingAddress.city,
+                      state: purchase.billingAddress.state,
+                      postal_code: purchase.billingAddress.zipCode,
+                      country: this.billingAddressCountry?.value.code,
+                    },
+                  },
                 },
               },
               { handleActions: false }
