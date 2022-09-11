@@ -66,6 +66,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+  isPurchaseButtonDisabled: boolean = false;
+
   // Initialize the Stripe API
   stripe = Stripe(environment.stripePublishableKey);
 
@@ -320,6 +322,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       !this.checkoutFormGroup.invalid &&
       this.displayError.textContent === ''
     ) {
+      this.isPurchaseButtonDisabled = true;
+
       this.checkoutService
         .createPaymentIntent(this.paymentInfo)
         .subscribe((paymentIntentResponse) => {
@@ -350,6 +354,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             .then((result: any) => {
               if (result.error) {
                 alert(`There was an error: ${result.error.message}`);
+                this.isPurchaseButtonDisabled = false;
               } else {
                 // call REST API via the CheckoutService
                 this.checkoutService.placeOrder(purchase).subscribe({
@@ -358,9 +363,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                       `Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`
                     );
                     this.resetCart();
+                    this.isPurchaseButtonDisabled = false;
                   },
                   error: (err) => {
                     alert(`There was an error: ${err.message}`);
+                    this.isPurchaseButtonDisabled = false;
                   },
                 });
               }

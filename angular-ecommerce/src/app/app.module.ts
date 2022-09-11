@@ -15,6 +15,7 @@ import {
 import myAppConfig from './config/my-app-config';
 
 import { AppComponent } from './app.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
@@ -73,6 +74,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    LoaderComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
     SearchComponent,

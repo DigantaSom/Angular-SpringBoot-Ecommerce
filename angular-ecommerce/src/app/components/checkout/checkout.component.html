@@ -427,8 +427,16 @@
 
         <!-- submit button -->
         <div class="text-center">
-          <button type="submit" class="btn btn-info" style="color: white">
-            Purchase
+          <button
+            type="submit"
+            class="btn btn-info"
+            style="color: white"
+            [disabled]="isPurchaseButtonDisabled"
+          >
+            <span *ngIf="!isPurchaseButtonDisabled">Purchase</span>
+            <span *ngIf="isPurchaseButtonDisabled">
+              <app-loader></app-loader>
+            </span>
           </button>
         </div>
       </form>
